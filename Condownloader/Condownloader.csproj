@@ -8,10 +8,13 @@
 
   <ItemGroup>
     <PackageReference Include="NYoutubeDL" Version="0.11.0" />
-    <PackageReference Include="Xabe.FFmpeg" Version="4.4.0" />
+    <PackageReference Include="xFFmpeg.NET" Version="3.4.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Dependencies\ffmpeg.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Dependencies\youtube-dl.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

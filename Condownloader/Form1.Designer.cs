@@ -35,7 +35,14 @@ namespace Condownloader
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.ConvertFormatBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.ConvertButton = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.ConvertInputTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.DownloadFileNameLabel = new System.Windows.Forms.Label();
@@ -52,6 +59,7 @@ namespace Condownloader
             this.StopAllJobsButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -107,6 +115,12 @@ namespace Condownloader
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.ConvertFormatBox);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.ConvertButton);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.ConvertInputTextBox);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(327, 3);
             this.groupBox2.Name = "groupBox2";
@@ -114,9 +128,67 @@ namespace Condownloader
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Convert";
+            this.groupBox2.DragDrop += new System.Windows.Forms.DragEventHandler(this.groupBox2_DragDrop);
+            this.groupBox2.DragOver += new System.Windows.Forms.DragEventHandler(this.groupBox2_DragOver);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 90);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(196, 15);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Format to convert to (such as .mp4)";
+            // 
+            // ConvertFormatBox
+            // 
+            this.ConvertFormatBox.Location = new System.Drawing.Point(6, 108);
+            this.ConvertFormatBox.Name = "ConvertFormatBox";
+            this.ConvertFormatBox.Size = new System.Drawing.Size(306, 23);
+            this.ConvertFormatBox.TabIndex = 11;
+            this.ConvertFormatBox.Text = ".mp4";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(6, 68);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(287, 12);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "You can also convert multiple, separate the files with semicolons.";
+            // 
+            // ConvertButton
+            // 
+            this.ConvertButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ConvertButton.Location = new System.Drawing.Point(237, 272);
+            this.ConvertButton.Name = "ConvertButton";
+            this.ConvertButton.Size = new System.Drawing.Size(75, 23);
+            this.ConvertButton.TabIndex = 11;
+            this.ConvertButton.Text = "Convert!";
+            this.ConvertButton.UseVisualStyleBackColor = true;
+            this.ConvertButton.Click += new System.EventHandler(this.ConvertButton_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 24);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(121, 15);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Path of file to convert";
+            // 
+            // ConvertInputTextBox
+            // 
+            this.ConvertInputTextBox.Location = new System.Drawing.Point(6, 42);
+            this.ConvertInputTextBox.Name = "ConvertInputTextBox";
+            this.ConvertInputTextBox.Size = new System.Drawing.Size(306, 23);
+            this.ConvertInputTextBox.TabIndex = 8;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.DownloadFileNameLabel);
@@ -135,10 +207,22 @@ namespace Condownloader
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Download";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(6, 116);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(278, 12);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Output templates are also available. Click here for more details.";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 116);
+            this.label3.Location = new System.Drawing.Point(6, 142);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(209, 15);
             this.label3.TabIndex = 9;
@@ -157,7 +241,7 @@ namespace Condownloader
             "avi",
             "best",
             "worst"});
-            this.comboBox1.Location = new System.Drawing.Point(6, 134);
+            this.comboBox1.Location = new System.Drawing.Point(6, 160);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 23);
             this.comboBox1.TabIndex = 8;
@@ -288,6 +372,7 @@ namespace Condownloader
             // 
             // Form1
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(648, 475);
@@ -298,9 +383,13 @@ namespace Condownloader
             this.MinimumSize = new System.Drawing.Size(664, 364);
             this.Name = "Form1";
             this.Text = "Condownloader";
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.groupBox2_DragDrop);
+            this.DragOver += new System.Windows.Forms.DragEventHandler(this.groupBox2_DragOver);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -333,6 +422,13 @@ namespace Condownloader
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button StopAllJobsButton;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button ConvertButton;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox ConvertInputTextBox;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox ConvertFormatBox;
+        private System.Windows.Forms.Label label5;
     }
 }
 

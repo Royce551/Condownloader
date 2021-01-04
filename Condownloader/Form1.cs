@@ -1,5 +1,7 @@
 ﻿using Condownloader.Jobs;
 using System;
+using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 using static NYoutubeDL.Helpers.Enums;
 
@@ -58,6 +60,15 @@ namespace Condownloader
             JobManager.AddJob(job);
             job.Start();
         }
+        private void ConvertButton_Click(object sender, EventArgs e)
+        {
+            foreach (var path in ConvertInputTextBox.Text.Split(';'))
+            {
+                var job = new ConvertJob(path, Path.Combine(Path.GetDirectoryName(path), $"{Path.GetFileNameWithoutExtension(path)}{ConvertFormatBox.Text}"));
+                JobManager.AddJob(job);
+                job.Start();
+            } 
+        }
         private void SetAudioOptionsEnabled(bool enabled)
         {
             DownloadFormatComboBox.Enabled = enabled;
@@ -75,6 +86,24 @@ namespace Condownloader
             }
             JobManager.Jobs.Clear();
             JobStateChanged(null, EventArgs.Empty);
+        }
+
+        private void label4_Click(object sender, EventArgs e) => 
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = @"https://github.com/ytdl-org/youtube-dl/blob/master/README.md#output-template",
+                UseShellExecute = true
+            });
+
+        private void groupBox2_DragDrop(object sender, DragEventArgs e)
+        {
+            ConvertInputTextBox.Text = string.Join(';', e.Data.GetData(DataFormats.FileDrop) as string[]);
+        }
+
+        private void groupBox2_DragOver(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+            else e.Effect = DragDropEffects.None;
         }
     }
 }

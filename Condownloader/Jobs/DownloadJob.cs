@@ -46,7 +46,7 @@ namespace Condownloader.Jobs
             {
                 Status.Progress = youtube.Info.VideoProgress;
                 Name = $"Downloading \"{youtube.Info.Title}\"";
-                if (Status.Progress == 1f) Status.State = JobState.Finished;
+                if (Status.Progress == 100) Status.State = JobState.Finished;
                 else Status.State = JobState.Running;
                 JobStateChanged?.Invoke(null, EventArgs.Empty);
             };

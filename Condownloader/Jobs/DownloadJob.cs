@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using NYoutubeDL;
 using static NYoutubeDL.Helpers.Enums;
 
-namespace Condownloader
+namespace Condownloader.Jobs
 {
     public class DownloadJob : IJob
     {

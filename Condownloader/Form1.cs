@@ -23,7 +23,7 @@ namespace Condownloader
             listBox1.Items.Clear();
             foreach (var job in JobManager.Jobs)
             {
-                listBox1.Items.Add($"{job.Name} - {job.Status.State} | {job.Status.Progress * 100}%");
+                listBox1.Items.Add($"{job.Name} - {job.Status.State} | {job.Status.Progress}%");
             }
         }
         private void DownloadButton_Click(object sender, EventArgs e)

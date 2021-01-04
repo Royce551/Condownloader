@@ -24,7 +24,7 @@ namespace Condownloader
     public class JobStatus
     {
         public JobState State { get; set; }
-        public float Progress { get; set; }
+        public int Progress { get; set; }
     }
     public enum JobState
     {

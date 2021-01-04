@@ -44,7 +44,7 @@ namespace Condownloader.Jobs
             };
             youtube.Info.PropertyChanged += delegate
             {
-                Status.Progress = youtube.Info.VideoProgress / 100;
+                Status.Progress = youtube.Info.VideoProgress;
                 Name = $"Downloading \"{youtube.Info.Title}\"";
                 if (Status.Progress == 1f) Status.State = JobState.Finished;
                 else Status.State = JobState.Running;

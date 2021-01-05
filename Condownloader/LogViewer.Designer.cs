@@ -83,7 +83,7 @@ namespace Condownloader
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.panel1);
             this.Name = "LogViewer";
-            this.Text = "LogViewer";
+            this.Text = "Log Viewer";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

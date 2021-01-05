@@ -29,12 +29,13 @@ namespace Condownloader
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.ViewLogsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -61,6 +62,7 @@ namespace Condownloader
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.StopAllJobsButton = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -83,23 +85,23 @@ namespace Condownloader
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem3});
+            this.ExitMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
             this.toolStripMenuItem1.Text = "&File";
             // 
-            // toolStripMenuItem3
+            // ExitMenuItem
             // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(223, 22);
-            this.toolStripMenuItem3.Text = "Exit Condownloader";
+            this.ExitMenuItem.Name = "ExitMenuItem";
+            this.ExitMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.ExitMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.ExitMenuItem.Text = "Exit Condownloader";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ViewLogsMenuItem,
-            this.toolStripMenuItem5});
+            this.AboutMenuItem});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(44, 20);
             this.toolStripMenuItem2.Text = "Help";
@@ -110,11 +112,11 @@ namespace Condownloader
             this.ViewLogsMenuItem.Size = new System.Drawing.Size(195, 22);
             this.ViewLogsMenuItem.Text = "View logs";
             // 
-            // toolStripMenuItem5
+            // AboutMenuItem
             // 
-            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(195, 22);
-            this.toolStripMenuItem5.Text = "About Condownloader";
+            this.AboutMenuItem.Name = "AboutMenuItem";
+            this.AboutMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.AboutMenuItem.Text = "About Condownloader";
             // 
             // tableLayoutPanel1
             // 
@@ -156,9 +158,9 @@ namespace Condownloader
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(6, 143);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(204, 15);
+            this.label9.Size = new System.Drawing.Size(226, 15);
             this.label9.TabIndex = 14;
-            this.label9.Text = "You can also drag and drop files here!";
+            this.label9.Text = "You can also just drag and drop files here.\r\n";
             // 
             // label7
             // 
@@ -174,7 +176,7 @@ namespace Condownloader
             this.ConvertFormatBox.Location = new System.Drawing.Point(6, 108);
             this.ConvertFormatBox.Name = "ConvertFormatBox";
             this.ConvertFormatBox.Size = new System.Drawing.Size(306, 23);
-            this.ConvertFormatBox.TabIndex = 11;
+            this.ConvertFormatBox.TabIndex = 7;
             this.ConvertFormatBox.Text = ".mp4";
             // 
             // label5
@@ -194,7 +196,7 @@ namespace Condownloader
             this.ConvertButton.Location = new System.Drawing.Point(237, 272);
             this.ConvertButton.Name = "ConvertButton";
             this.ConvertButton.Size = new System.Drawing.Size(75, 23);
-            this.ConvertButton.TabIndex = 11;
+            this.ConvertButton.TabIndex = 8;
             this.ConvertButton.Text = "Convert!";
             this.ConvertButton.UseVisualStyleBackColor = true;
             this.ConvertButton.Click += new System.EventHandler(this.ConvertButton_Click);
@@ -213,7 +215,7 @@ namespace Condownloader
             this.ConvertInputTextBox.Location = new System.Drawing.Point(6, 42);
             this.ConvertInputTextBox.Name = "ConvertInputTextBox";
             this.ConvertInputTextBox.Size = new System.Drawing.Size(306, 23);
-            this.ConvertInputTextBox.TabIndex = 8;
+            this.ConvertInputTextBox.TabIndex = 6;
             // 
             // groupBox1
             // 
@@ -285,7 +287,7 @@ namespace Condownloader
             this.comboBox1.Location = new System.Drawing.Point(6, 180);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 8;
+            this.comboBox1.TabIndex = 2;
             // 
             // DownloadFileNameLabel
             // 
@@ -301,7 +303,7 @@ namespace Condownloader
             this.DownloadFileNameTextBox.Location = new System.Drawing.Point(6, 108);
             this.DownloadFileNameTextBox.Name = "DownloadFileNameTextBox";
             this.DownloadFileNameTextBox.Size = new System.Drawing.Size(306, 23);
-            this.DownloadFileNameTextBox.TabIndex = 6;
+            this.DownloadFileNameTextBox.TabIndex = 1;
             // 
             // DownloadAudioOnlyCheckBox
             // 
@@ -309,7 +311,7 @@ namespace Condownloader
             this.DownloadAudioOnlyCheckBox.Location = new System.Drawing.Point(10, 209);
             this.DownloadAudioOnlyCheckBox.Name = "DownloadAudioOnlyCheckBox";
             this.DownloadAudioOnlyCheckBox.Size = new System.Drawing.Size(139, 19);
-            this.DownloadAudioOnlyCheckBox.TabIndex = 5;
+            this.DownloadAudioOnlyCheckBox.TabIndex = 3;
             this.DownloadAudioOnlyCheckBox.Text = "Download audio only";
             this.DownloadAudioOnlyCheckBox.UseVisualStyleBackColor = true;
             this.DownloadAudioOnlyCheckBox.CheckedChanged += new System.EventHandler(this.DownloadAudioOnlyCheckBox_CheckedChanged);
@@ -340,7 +342,7 @@ namespace Condownloader
             this.DownloadFormatComboBox.Location = new System.Drawing.Point(6, 249);
             this.DownloadFormatComboBox.Name = "DownloadFormatComboBox";
             this.DownloadFormatComboBox.Size = new System.Drawing.Size(121, 23);
-            this.DownloadFormatComboBox.TabIndex = 3;
+            this.DownloadFormatComboBox.TabIndex = 4;
             // 
             // DownloadButton
             // 
@@ -348,7 +350,7 @@ namespace Condownloader
             this.DownloadButton.Location = new System.Drawing.Point(238, 272);
             this.DownloadButton.Name = "DownloadButton";
             this.DownloadButton.Size = new System.Drawing.Size(75, 23);
-            this.DownloadButton.TabIndex = 2;
+            this.DownloadButton.TabIndex = 5;
             this.DownloadButton.Text = "Download!";
             this.DownloadButton.UseVisualStyleBackColor = true;
             this.DownloadButton.Click += new System.EventHandler(this.DownloadButton_Click);
@@ -385,6 +387,7 @@ namespace Condownloader
             // 
             this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox1.FormattingEnabled = true;
+            this.listBox1.HorizontalScrollbar = true;
             this.listBox1.ItemHeight = 15;
             this.listBox1.Location = new System.Drawing.Point(3, 19);
             this.listBox1.Name = "listBox1";
@@ -406,10 +409,15 @@ namespace Condownloader
             this.StopAllJobsButton.Location = new System.Drawing.Point(547, 4);
             this.StopAllJobsButton.Name = "StopAllJobsButton";
             this.StopAllJobsButton.Size = new System.Drawing.Size(92, 23);
-            this.StopAllJobsButton.TabIndex = 0;
+            this.StopAllJobsButton.TabIndex = 9;
             this.StopAllJobsButton.Text = "Stop all jobs";
             this.StopAllJobsButton.UseVisualStyleBackColor = true;
             this.StopAllJobsButton.Click += new System.EventHandler(this.StopAllJobsButton_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 10;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -462,7 +470,7 @@ namespace Condownloader
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button StopAllJobsButton;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem ExitMenuItem;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button ConvertButton;
         private System.Windows.Forms.Label label6;
@@ -473,7 +481,8 @@ namespace Condownloader
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ToolStripMenuItem ViewLogsMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem AboutMenuItem;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

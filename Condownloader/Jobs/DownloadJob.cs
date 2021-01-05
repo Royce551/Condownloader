@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -51,7 +52,15 @@ namespace Condownloader.Jobs
             {
                 Status.Progress = youtube.Info.VideoProgress;
                 Name = $"Downloading \"{youtube.Info.Title}\"";
-                if (Status.Progress == 100) Status.State = JobState.Finished;
+                if (Status.Progress == 100)
+                {
+                    Status.State = JobState.Finished;
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = Path.Combine(Environment.CurrentDirectory, "Downloads"),
+                        UseShellExecute = true
+                    });
+                }
                 else Status.State = JobState.Running;
                 JobStateChanged?.Invoke(null, EventArgs.Empty);
             };

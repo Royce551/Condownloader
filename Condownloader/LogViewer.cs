@@ -12,12 +12,11 @@ namespace Condownloader
 {
     public partial class LogViewer : Form
     {
-        private LoggingManager logs;
         public LogViewer(LoggingManager logs)
         {
             InitializeComponent();
-            this.logs = logs;
             logs.NewLogsRecieved += Logs_NewLogsRecieved;
+            foreach (var log in logs.Logs) listBox1.Items.Add(log);
         }
         private void Logs_NewLogsRecieved(object sender, string e)
         {

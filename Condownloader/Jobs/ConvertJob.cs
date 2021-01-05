@@ -1,6 +1,7 @@
 ﻿using FFmpeg.NET;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -38,6 +39,11 @@ namespace Condownloader.Jobs
         {
             Status.State = JobState.Finished;
             Status.Progress = 100;
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = Path.GetDirectoryName(outputFile.FileInfo.FullName),
+                UseShellExecute = true
+            });
             JobStateChanged?.Invoke(null, EventArgs.Empty);
         }
 

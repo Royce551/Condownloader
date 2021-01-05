@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using System.Linq;
 using static NYoutubeDL.Helpers.Enums;
 
 namespace Condownloader
@@ -18,8 +19,12 @@ namespace Condownloader
             JobManager.JobStateChanged += JobStateChanged;
             // editing menu bar items in the designer seems to be screwed right now; for now, just manually subscribe to events
             ViewLogsMenuItem.Click += ViewLogsMenuItem_Click;
+            ExitMenuItem.Click += ExitMenuItem_Click;
+            AboutMenuItem.Click += AboutMenuItem_Click;
         }
 
+        private void AboutMenuItem_Click(object sender, EventArgs e) => new AboutForm().Show();
+        private void ExitMenuItem_Click(object sender, EventArgs e) => Application.Exit();
         private void ViewLogsMenuItem_Click(object sender, EventArgs e) => new LogViewer(LoggingManager).Show();
 
         private void JobError(object sender, JobErrorEventArgs args)
@@ -28,11 +33,7 @@ namespace Condownloader
         }
         private void JobStateChanged(object sender, EventArgs args)
         {
-            listBox1?.Items?.Clear();
-            foreach (var job in JobManager.Jobs)
-            {
-                listBox1.Items.Add($"{job.Name} - {job.Status.State} | {job.Status.Progress}%");
-            }
+            
         }
         private void DownloadButton_Click(object sender, EventArgs e)
         {
@@ -68,16 +69,24 @@ namespace Condownloader
                 JobManager.AddJob(job, LoggingManager);
                 job.Start();
             }
-            
+            timer1.Start();
         }
         private void ConvertButton_Click(object sender, EventArgs e)
         {
-            foreach (var path in ConvertInputTextBox.Text.Split(';'))
+            var paths = ConvertInputTextBox.Text.Split(';');
+            if (paths.Length > 0)
+            {
+                var result = MessageBox.Show("Starting multiple convert jobs at once will use a huge amount of resources and may render your PC unusable until they finish.",
+                    "Condownloader", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (result == DialogResult.Cancel) return;
+            }
+            foreach (var path in paths)
             {
                 var job = new ConvertJob(path, Path.Combine(Path.GetDirectoryName(path), $"{Path.GetFileNameWithoutExtension(path)}{ConvertFormatBox.Text}"));
                 JobManager.AddJob(job, LoggingManager);
                 job.Start();
-            } 
+            }
+            timer1.Start();
         }
         private void SetAudioOptionsEnabled(bool enabled)
         {
@@ -114,6 +123,18 @@ namespace Condownloader
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
             else e.Effect = DragDropEffects.None;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            listBox1?.Items?.Clear();
+            listBox1.BeginUpdate();
+            foreach (var job in JobManager.Jobs)
+            {
+                listBox1.Items.Add($"{job.Name} - {job.Status.State} | {job.Status.Progress}%");
+            }
+            listBox1.EndUpdate();
+            if (JobManager.Jobs.All(x => x.Status.Progress == 100)) timer1.Stop();
         }
     }
 }

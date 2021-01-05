@@ -10,6 +10,7 @@ namespace Condownloader.Jobs
     {
         public EventHandler<JobErrorEventArgs> JobError { get; set; }
         public EventHandler JobStateChanged { get; set; }
+        public LoggingManager Logs { get; set; }
         public JobStatus Status { get; set; }
         public string Name { get; set; }
         void Start();

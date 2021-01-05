@@ -13,11 +13,12 @@ namespace Condownloader.Jobs
     {
         public EventHandler<JobErrorEventArgs> JobError { get; set; }
         public EventHandler JobStateChanged { get; set; }
-        public JobStatus Status { get; set; } = new JobStatus();
+        public LoggingManager Logs { get; set; }
+        public JobStatus Status { get; set; } = new();
         public string Name { get; set; } = "Converting a file";
         private readonly MediaFile inputFile;
         private readonly MediaFile outputFile;
-        private CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        private readonly CancellationTokenSource cancellationTokenSource = new();
         public ConvertJob(string inputPath, string outputPath)
         {
             inputFile = new MediaFile(inputPath);

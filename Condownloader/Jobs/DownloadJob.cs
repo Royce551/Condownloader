@@ -13,7 +13,8 @@ namespace Condownloader.Jobs
     {
         public EventHandler<JobErrorEventArgs> JobError { get; set; }
         public EventHandler JobStateChanged { get; set; }
-        public JobStatus Status { get; set; } = new JobStatus();
+        public LoggingManager Logs { get; set; }
+        public JobStatus Status { get; set; } = new();
         public string Name { get; set; } = "Downloading a video";
 
         private readonly YoutubeDL youtube;
@@ -41,6 +42,10 @@ namespace Condownloader.Jobs
                 Status.State = JobState.Failed;
                 JobStateChanged?.Invoke(null, EventArgs.Empty);
                 JobError?.Invoke(null, new JobErrorEventArgs { Error = errorOutput }); 
+            };
+            youtube.StandardOutputEvent += (object sender, string output) =>
+            {
+                Logs.WriteLog(output);
             };
             youtube.Info.PropertyChanged += delegate
             {

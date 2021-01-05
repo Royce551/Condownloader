@@ -10,10 +10,11 @@ namespace Condownloader
         public EventHandler<JobErrorEventArgs> JobError;
         public EventHandler JobStateChanged;
 
-        public void AddJob(IJob job)
+        public void AddJob(IJob job, LoggingManager logs)
         {
             job.JobError = JobError;
             job.JobStateChanged = JobStateChanged;
+            job.Logs = logs;
             Jobs.Add(job);
         }
     }

@@ -9,20 +9,26 @@ namespace Condownloader
 {
     public partial class Form1 : Form
     {
-        public JobManager JobManager = new JobManager();
+        public JobManager JobManager = new();
+        public LoggingManager LoggingManager = new();
         public Form1()
         {
             InitializeComponent();
             JobManager.JobError += JobError;
             JobManager.JobStateChanged += JobStateChanged;
+            // editing menu bar items in the designer seems to be screwed right now; for now, just manually subscribe to events
+            ViewLogsMenuItem.Click += ViewLogsMenuItem_Click;
         }
+
+        private void ViewLogsMenuItem_Click(object sender, EventArgs e) => new LogViewer(LoggingManager).Show();
+
         private void JobError(object sender, JobErrorEventArgs args)
         {
             MessageBox.Show(args.Error);
         }
         private void JobStateChanged(object sender, EventArgs args)
         {
-            listBox1.Items.Clear();
+            listBox1?.Items?.Clear();
             foreach (var job in JobManager.Jobs)
             {
                 listBox1.Items.Add($"{job.Name} - {job.Status.State} | {job.Status.Progress}%");
@@ -55,17 +61,21 @@ namespace Condownloader
                 8 => VideoFormat.worst,
                 -1 or _ => VideoFormat.mp4
             };
-            string fileName = DownloadFileNameTextBox.Text == string.Empty ? "file" : DownloadFileNameTextBox.Text;
-            var job = new DownloadJob(DownloadUrlTextBox.Text, fileName, DownloadAudioOnlyCheckBox.Checked, audioFormat, videoFormat);
-            JobManager.AddJob(job);
-            job.Start();
+            foreach (var url in DownloadUrlTextBox.Text.Split(';'))
+            {
+                string fileName = DownloadFileNameTextBox.Text == string.Empty ? "file" : DownloadFileNameTextBox.Text;
+                var job = new DownloadJob(url, fileName, DownloadAudioOnlyCheckBox.Checked, audioFormat, videoFormat);
+                JobManager.AddJob(job, LoggingManager);
+                job.Start();
+            }
+            
         }
         private void ConvertButton_Click(object sender, EventArgs e)
         {
             foreach (var path in ConvertInputTextBox.Text.Split(';'))
             {
                 var job = new ConvertJob(path, Path.Combine(Path.GetDirectoryName(path), $"{Path.GetFileNameWithoutExtension(path)}{ConvertFormatBox.Text}"));
-                JobManager.AddJob(job);
+                JobManager.AddJob(job, LoggingManager);
                 job.Start();
             } 
         }

@@ -33,8 +33,11 @@ namespace Condownloader
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ViewLogsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.ConvertFormatBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -42,6 +45,7 @@ namespace Condownloader
             this.label6 = new System.Windows.Forms.Label();
             this.ConvertInputTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -93,9 +97,24 @@ namespace Condownloader
             // 
             // toolStripMenuItem2
             // 
+            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ViewLogsMenuItem,
+            this.toolStripMenuItem5});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(44, 20);
             this.toolStripMenuItem2.Text = "Help";
+            // 
+            // ViewLogsMenuItem
+            // 
+            this.ViewLogsMenuItem.Name = "ViewLogsMenuItem";
+            this.ViewLogsMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.ViewLogsMenuItem.Text = "View logs";
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(195, 22);
+            this.toolStripMenuItem5.Text = "About Condownloader";
             // 
             // tableLayoutPanel1
             // 
@@ -115,6 +134,7 @@ namespace Condownloader
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.ConvertFormatBox);
             this.groupBox2.Controls.Add(this.label5);
@@ -130,6 +150,15 @@ namespace Condownloader
             this.groupBox2.Text = "Convert";
             this.groupBox2.DragDrop += new System.Windows.Forms.DragEventHandler(this.groupBox2_DragDrop);
             this.groupBox2.DragOver += new System.Windows.Forms.DragEventHandler(this.groupBox2_DragOver);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 143);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(204, 15);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "You can also drag and drop files here!";
             // 
             // label7
             // 
@@ -157,7 +186,7 @@ namespace Condownloader
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(287, 12);
             this.label5.TabIndex = 11;
-            this.label5.Text = "You can also convert multiple, separate the files with semicolons.";
+            this.label5.Text = "You can also convert multiple, separate the files with semicolons.\r\n";
             // 
             // ConvertButton
             // 
@@ -188,6 +217,7 @@ namespace Condownloader
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.comboBox1);
@@ -207,12 +237,23 @@ namespace Condownloader
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Download";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.Location = new System.Drawing.Point(6, 68);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(304, 12);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "You can also download multiple, separate the URLs with semicolons.";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(6, 116);
+            this.label4.Location = new System.Drawing.Point(6, 134);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(278, 12);
             this.label4.TabIndex = 10;
@@ -222,7 +263,7 @@ namespace Condownloader
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 142);
+            this.label3.Location = new System.Drawing.Point(6, 162);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(209, 15);
             this.label3.TabIndex = 9;
@@ -241,7 +282,7 @@ namespace Condownloader
             "avi",
             "best",
             "worst"});
-            this.comboBox1.Location = new System.Drawing.Point(6, 160);
+            this.comboBox1.Location = new System.Drawing.Point(6, 180);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 23);
             this.comboBox1.TabIndex = 8;
@@ -249,7 +290,7 @@ namespace Condownloader
             // DownloadFileNameLabel
             // 
             this.DownloadFileNameLabel.AutoSize = true;
-            this.DownloadFileNameLabel.Location = new System.Drawing.Point(6, 72);
+            this.DownloadFileNameLabel.Location = new System.Drawing.Point(6, 90);
             this.DownloadFileNameLabel.Name = "DownloadFileNameLabel";
             this.DownloadFileNameLabel.Size = new System.Drawing.Size(58, 15);
             this.DownloadFileNameLabel.TabIndex = 7;
@@ -257,7 +298,7 @@ namespace Condownloader
             // 
             // DownloadFileNameTextBox
             // 
-            this.DownloadFileNameTextBox.Location = new System.Drawing.Point(6, 90);
+            this.DownloadFileNameTextBox.Location = new System.Drawing.Point(6, 108);
             this.DownloadFileNameTextBox.Name = "DownloadFileNameTextBox";
             this.DownloadFileNameTextBox.Size = new System.Drawing.Size(306, 23);
             this.DownloadFileNameTextBox.TabIndex = 6;
@@ -265,7 +306,7 @@ namespace Condownloader
             // DownloadAudioOnlyCheckBox
             // 
             this.DownloadAudioOnlyCheckBox.AutoSize = true;
-            this.DownloadAudioOnlyCheckBox.Location = new System.Drawing.Point(10, 189);
+            this.DownloadAudioOnlyCheckBox.Location = new System.Drawing.Point(10, 209);
             this.DownloadAudioOnlyCheckBox.Name = "DownloadAudioOnlyCheckBox";
             this.DownloadAudioOnlyCheckBox.Size = new System.Drawing.Size(139, 19);
             this.DownloadAudioOnlyCheckBox.TabIndex = 5;
@@ -277,7 +318,7 @@ namespace Condownloader
             // 
             this.label2.AutoSize = true;
             this.label2.Enabled = false;
-            this.label2.Location = new System.Drawing.Point(6, 211);
+            this.label2.Location = new System.Drawing.Point(6, 231);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(211, 15);
             this.label2.TabIndex = 4;
@@ -296,7 +337,7 @@ namespace Condownloader
             "3gp",
             "vorbis",
             "wav"});
-            this.DownloadFormatComboBox.Location = new System.Drawing.Point(6, 229);
+            this.DownloadFormatComboBox.Location = new System.Drawing.Point(6, 249);
             this.DownloadFormatComboBox.Name = "DownloadFormatComboBox";
             this.DownloadFormatComboBox.Size = new System.Drawing.Size(121, 23);
             this.DownloadFormatComboBox.TabIndex = 3;
@@ -429,6 +470,10 @@ namespace Condownloader
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox ConvertFormatBox;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ToolStripMenuItem ViewLogsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
     }
 }
 

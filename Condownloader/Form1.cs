@@ -5,6 +5,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Linq;
 using static NYoutubeDL.Helpers.Enums;
+using Condownloader.Configuration;
 
 namespace Condownloader
 {
@@ -12,9 +13,12 @@ namespace Condownloader
     {
         public JobManager JobManager = new();
         public LoggingManager LoggingManager = new();
+        public ConfigurationFile Config;
         public Form1()
         {
             InitializeComponent();
+            Config = ConfigurationManager.Read();
+            RestoreSettings();
             JobManager.JobError += JobError;
             JobManager.JobStateChanged += JobStateChanged;
             // editing menu bar items in the designer seems to be screwed right now; for now, just manually subscribe to events
@@ -22,7 +26,14 @@ namespace Condownloader
             ExitMenuItem.Click += ExitMenuItem_Click;
             AboutMenuItem.Click += AboutMenuItem_Click;
         }
-
+        public void RestoreSettings()
+        {
+            DownloadUrlTextBox.Text = Config.DownloadURLS;
+            DownloadFileNameTextBox.Text = Config.DownloadFileName;
+            DownloadAudioOnlyCheckBox.Checked = Config.DownloadAudioOnly;
+            SetAudioOptionsEnabled(Config.DownloadAudioOnly);
+            ConvertFormatBox.Text = Config.ConvertFormat;
+        }
         private void AboutMenuItem_Click(object sender, EventArgs e) => new AboutForm().Show();
         private void ExitMenuItem_Click(object sender, EventArgs e) => Application.Exit();
         private void ViewLogsMenuItem_Click(object sender, EventArgs e) => new LogViewer(LoggingManager).Show();
@@ -135,6 +146,29 @@ namespace Condownloader
             }
             listBox1.EndUpdate();
             if (JobManager.Jobs.All(x => x.Status.Progress == 100)) timer1.Stop();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Config.DownloadURLS = DownloadUrlTextBox.Text;
+            Config.DownloadFileName = DownloadFileNameTextBox.Text;
+            Config.DownloadAudioOnly = DownloadAudioOnlyCheckBox.Checked;
+            Config.ConvertFormat = ConvertFormatBox.Text;
+            ConfigurationManager.Write(Config);
+            if (JobManager.Jobs.Exists(x => x.Status.State == JobState.Running))
+            {
+                var result = MessageBox.Show("You still have running jobs. They'll be stopped when you close Condownloader.", "Condownloader", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (result != DialogResult.OK)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+            }
+            foreach (var job in JobManager.Jobs)
+            {
+                job.Stop();
+            }
+            JobManager.Jobs.Clear();
         }
     }
 }

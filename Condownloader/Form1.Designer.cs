@@ -432,6 +432,7 @@ namespace Condownloader
             this.MinimumSize = new System.Drawing.Size(664, 364);
             this.Name = "Form1";
             this.Text = "Condownloader";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.groupBox2_DragDrop);
             this.DragOver += new System.Windows.Forms.DragEventHandler(this.groupBox2_DragOver);
             this.menuStrip1.ResumeLayout(false);

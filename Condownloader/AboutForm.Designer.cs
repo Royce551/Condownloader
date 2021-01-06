@@ -43,9 +43,9 @@ namespace Condownloader
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 21);
+            this.label1.Size = new System.Drawing.Size(174, 21);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Condownloader";
+            this.label1.Text = "Condownloader (Ver. 1)";
             // 
             // label2
             // 
@@ -70,9 +70,9 @@ namespace Condownloader
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(12, 105);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(185, 15);
+            this.label4.Size = new System.Drawing.Size(200, 15);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Thanks for using Condownloader!";
+            this.label4.Text = "Thanks for using Condownloader! ❤";
             // 
             // label5
             // 

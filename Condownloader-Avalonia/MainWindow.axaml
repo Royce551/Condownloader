@@ -1,0 +1,52 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="664" d:DesignHeight="514" Width="664" Height="514"
+        x:Class="Condownloader_Avalonia.MainWindow"
+        Title="Condownloader_Avalonia">
+	<Grid ColumnDefinitions="0.5*, 0.5*" RowDefinitions="0.75*, 0.25*">
+		<StackPanel Grid.Column="0" Grid.Row="0">
+			<TextBlock FontSize="16" FontWeight="Bold" Text="Download" Margin="5"/>
+			<TextBox x:Name="DownloadUrlTextBox" FontSize="14" Watermark="URL to download" Margin="5"/>
+			<TextBlock FontSize="9" Text="You can also download multiple, separate the URLs with semicolons." TextWrapping="Wrap" Margin="5,0"/>
+
+			<TextBox x:Name="DownloadFileNameTextBox" FontSize="14" Watermark="File name" Margin="5"/>
+			<TextBlock x:Name="label4" FontSize="9" Text="Output templates are also available. Click here for more details." TextWrapping="Wrap" Margin="5,0"/>
+
+			<TextBlock x:Name="label3" FontSize="14" Text="Video Format (select nothing for mp4)" TextWrapping="Wrap" Margin="5, 20, 0, 5"/>
+			<ComboBox x:Name="comboBox1" Margin="5,0,0,0">
+				<ComboBoxItem>???</ComboBoxItem>
+				<ComboBoxItem>mp4</ComboBoxItem>
+				<ComboBoxItem>flv</ComboBoxItem>
+				<ComboBoxItem>ogg</ComboBoxItem>
+				<ComboBoxItem>webm</ComboBoxItem>
+				<ComboBoxItem>mkv</ComboBoxItem>
+				<ComboBoxItem>avi</ComboBoxItem>
+				<ComboBoxItem>best</ComboBoxItem>
+				<ComboBoxItem>worst</ComboBoxItem>
+			</ComboBox>
+			<CheckBox x:Name="DownloadAudioOnlyCheckBox" Content="Download audio only" Margin="5"/>
+			<TextBlock x:Name="label2" FontSize="14" Text="Audio Format (select nothing for mp3)" TextWrapping="Wrap" Margin="5, 0, 0, 5"/>
+			<ComboBox x:Name="DownloadFormatComboBox" Margin="5,0,0,0">
+				<ComboBoxItem>aac</ComboBoxItem>
+				<ComboBoxItem>best</ComboBoxItem>
+				<ComboBoxItem>m4a</ComboBoxItem>
+				<ComboBoxItem>mp3</ComboBoxItem>
+				<ComboBoxItem>opus</ComboBoxItem>
+				<ComboBoxItem>3gp</ComboBoxItem>
+				<ComboBoxItem>vorbis</ComboBoxItem>
+				<ComboBoxItem>wav</ComboBoxItem>
+			</ComboBox>
+			<Button x:Name="DownloadButton" Content="Download!" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="DownloadButton_Click"/>
+		</StackPanel>
+
+		<StackPanel Grid.Column="1" Grid.Row="0">
+			<TextBlock FontSize="16" FontWeight="Bold" Text="Convert" Margin="5"/>
+		</StackPanel>
+
+		<StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
+			<TextBlock FontSize="16" FontWeight="Bold" Text="Jobs" Margin="5"/>
+		</StackPanel>
+	</Grid>
+</Window>

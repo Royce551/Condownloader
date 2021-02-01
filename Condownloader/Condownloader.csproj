@@ -4,6 +4,9 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+    <Authors>Squid Grill</Authors>
+    <Company>Squid Grill</Company>
+    <Copyright>Copyright @ Squid Grill 2021</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

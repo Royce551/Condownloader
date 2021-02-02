@@ -19,4 +19,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Dependencies\IBMPlexSans-Medium.ttf"/>
+	</ItemGroup>
 </Project>

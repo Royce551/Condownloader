@@ -58,19 +58,7 @@ public class CustomFontManagerImpl : IFontManagerImpl
 
     public IGlyphTypefaceImpl CreateGlyphTypeface(Typeface typeface)
     {
-        SKTypeface skTypeface;
 
-        switch (typeface.FontFamily.Name)
-        {
-            case FontFamily.DefaultFontFamilyName:
-            case "微软雅黑":  //font family name
-                skTypeface = SKTypeface.FromFamilyName(_defaultTypeface.FontFamily.Name); break;
-            default:
-                skTypeface = SKTypeface.FromFamilyName(typeface.FontFamily.Name,
-                    (SKFontStyleWeight)typeface.Weight, SKFontStyleWidth.Normal, (SKFontStyleSlant)typeface.Style);
-                break;
-        }
-
-        return new GlyphTypefaceImpl(skTypeface);
+        return new GlyphTypefaceImpl(SKTypeface.FromFamilyName(_defaultTypeface.FontFamily.Name));
     }
 }

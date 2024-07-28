@@ -6,7 +6,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Condownloader.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
+        Icon="/Assets/avalonia-logo.ico" Background="{DynamicResource BackgroundColor}"
         Title="Condownloader">
 
     <Design.DataContext>
@@ -15,6 +15,80 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+  <NativeMenu.Menu>
+    <NativeMenu>
+      <NativeMenuItem Header="_File">
+        <NativeMenu>
+          <NativeMenuItem Header="_Exit Condownloader"/>
+        </NativeMenu>
+      </NativeMenuItem>
+      <NativeMenuItem Header="_Help">
+        <NativeMenu>
+          <NativeMenuItem Header="_View logs"/>
+          <NativeMenuItem Header="_About Condownloader"/>
+        </NativeMenu>
+      </NativeMenuItem>
+    </NativeMenu>
+  </NativeMenu.Menu>
+  
+  <DockPanel>
+    <NativeMenuBar DockPanel.Dock="Top"/>
+    <Grid RowDefinitions="Auto,*" ColumnDefinitions="*,*">
+      <StackPanel Grid.Column="0" Grid.Row="0" Spacing="5" Margin="10">
+        <TextBlock Text="Download" FontSize="24" FontWeight="Bold"/>
+
+        <TextBox Watermark="URL to download" Text="{Binding DownloadURL}"/>
+        <TextBlock Text="You can also download multiple; separate the URLs with semicolons" TextWrapping="Wrap" FontSize="10"/>
+
+        <TextBox Watermark="File name" Text="{Binding DownloadFileName}"/>
+        <TextBlock Text="Output templates are also available. Click here for more details" TextWrapping="Wrap" FontSize="10"/>
+
+        <CheckBox Margin="0,10,0,0" Content="Download audio only" IsChecked="{Binding DownloadAudioOnly}"/>
+        <TextBlock Text="Format" IsVisible="{Binding !DownloadAudioOnly}"/>
+        <ComboBox IsVisible="{Binding !DownloadAudioOnly}" SelectedIndex="{Binding DownloadVideoFormatIndex}">
+          <ComboBoxItem Content="best"/>
+          <ComboBoxItem Content="worst"/>
+          <ComboBoxItem Content="mp4"/>
+          <ComboBoxItem Content="flv"/>
+          <ComboBoxItem Content="ogg"/>
+          <ComboBoxItem Content="webm"/>
+          <ComboBoxItem Content="mkv"/>
+          <ComboBoxItem Content="avi"/>
+        </ComboBox>
+
+        <TextBlock Text="Format" IsVisible="{Binding DownloadAudioOnly}"/>
+        <ComboBox IsVisible="{Binding DownloadAudioOnly}" SelectedIndex="{Binding DownloadAudioFormatIndex}">
+          <ComboBoxItem Content="best"/>
+          <ComboBoxItem Content="mp3"/>
+          <ComboBoxItem Content="aac"/>
+          <ComboBoxItem Content="m4a"/>
+          <ComboBoxItem Content="opus"/>
+          <ComboBoxItem Content="3gp"/>
+          <ComboBoxItem Content="vorbis"/>
+          <ComboBoxItem Content="wav"/>
+        </ComboBox>
+
+        <Button Margin="0,20,0,0" HorizontalAlignment="Right" Content="Download!" Command="{Binding StartDownloadJob}"/>
+      </StackPanel>
+      <StackPanel Grid.Column="1" Grid.Row="0" Spacing="5" Margin="10">
+        <TextBlock Text="Convert" FontSize="24" FontWeight="Bold"/>
+
+        <TextBox Watermark="Path of file to convert" Text="{Binding ConvertURL}"/>
+        <TextBlock Text="You can also download multiple; separate the URLs with semicolons" TextWrapping="Wrap" FontSize="12"/>
+
+        <TextBox Watermark="Format to convert to (such as .mp4)" Text="{Binding ConvertFormat}"/>
+
+        <Button Margin="0,20,0,0" HorizontalAlignment="Right" Content="Convert!" Command="{Binding StartConvertJob}"/>
+      </StackPanel>
+
+      <DockPanel Grid.ColumnSpan="2" Grid.Row="1" Margin="10">
+        <TextBlock DockPanel.Dock="Top" Text="Jobs" FontSize="24" FontWeight="Bold"/>
+        <Button DockPanel.Dock="Bottom" Margin="0,10,0,0" HorizontalAlignment="Right" Content="Stop all jobs"/>
+        <ListBox MinHeight="100">
+          
+        </ListBox>
+      </DockPanel>
+    </Grid>
+  </DockPanel>
 
 </Window>

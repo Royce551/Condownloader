@@ -16,13 +16,15 @@ namespace Condownloader.Jobs
         public EventHandler JobStateChanged { get; set; }
         public LoggingManager Logs { get; set; }
         public JobStatus Status { get; set; } = new();
-        public string Name { get; set; } = "Downloading a video";
+        public string Name { get; set; } = $"Downloading a video";
 
         private readonly YoutubeDL youtube;
         private readonly string url;
         public DownloadJob(string url, string fileName, bool audioOnly, AudioFormat audioFormat, VideoFormat videoFormat)
         {
             this.url = url;
+            Name = $"Downloading {url} ({fileName})";
+
             youtube = new YoutubeDL();
             youtube.YoutubeDlPath = "Dependencies/Windows/youtube-dl.exe"; // TODO: handle platform
 
@@ -51,7 +53,7 @@ namespace Condownloader.Jobs
             youtube.Info.PropertyChanged += delegate
             {
                 Status.Progress = youtube.Info.VideoProgress;
-                Name = $"Downloading \"{youtube.Info.Title}\"";
+                if (string.IsNullOrWhiteSpace(youtube.Info.Title)) Name = $"Downloading \"{youtube.Info.Title}\"";
                 if (Status.Progress == 100)
                 {
                     Status.State = JobState.Finished;

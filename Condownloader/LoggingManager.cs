@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace Condownloader
         public void WriteLog(string log)
         {
             Logs.Add(log);
+            Debug.WriteLine(log);
             NewLogsRecieved?.Invoke(null, log);
         }
     }

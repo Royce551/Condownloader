@@ -25,7 +25,12 @@ namespace Condownloader
     public class JobStatus
     {
         public JobState State { get; set; } = JobState.Running;
+        public string ExtraInfo { get; set; } = string.Empty;
         public double Progress { get; set; } = 0;
+
+        public bool IsRunning => State == JobState.Running;
+        public bool IsFinished => State == JobState.Finished;
+        public bool IsFailed => State == JobState.Failed;
     }
     public enum JobState
     {

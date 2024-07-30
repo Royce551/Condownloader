@@ -53,7 +53,8 @@ namespace Condownloader.Jobs
             youtube.Info.PropertyChanged += delegate
             {
                 Status.Progress = youtube.Info.VideoProgress;
-                if (string.IsNullOrWhiteSpace(youtube.Info.Title)) Name = $"Downloading \"{youtube.Info.Title}\"";
+                Status.ExtraInfo = $"Status: {youtube.Info.Status}, Size: {youtube.Info.VideoSize}, Rate: {youtube.Info.DownloadRate}, ETA: {youtube.Info.Eta}";
+                if (!string.IsNullOrWhiteSpace(youtube.Info.Title)) Name = $"Downloading \"{youtube.Info.Title}\"";
                 if (Status.Progress == 100)
                 {
                     Status.State = JobState.Finished;

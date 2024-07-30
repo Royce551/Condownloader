@@ -50,7 +50,8 @@ namespace Condownloader.Jobs
         private void Ffmpeg_Progress(object sender, FFmpeg.NET.Events.ConversionProgressEventArgs e)
         {
             Status.State = JobState.Running;
-            Status.Progress = 50;
+            Status.Progress = e.ProcessedDuration.TotalSeconds / e.TotalDuration.TotalSeconds;
+            Status.ExtraInfo = $"Bitrate: {e.Bitrate}, Frame: {e.Frame}, FPS: {e.Fps}";
             JobStateChanged?.Invoke(null, EventArgs.Empty);
         }
 

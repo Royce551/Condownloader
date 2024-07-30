@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Condownloader.Jobs;
 using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using static NYoutubeDL.Helpers.Enums;
 
@@ -97,7 +98,14 @@ namespace Condownloader.ViewModels
 
         public void StartConvertJob()
         {
-
+            var paths = ConvertURL.Split(';');
+            foreach (var path in paths)
+            {
+                var job = new ConvertJob(path, Path.Combine(Path.GetDirectoryName(path), $"{Path.GetFileNameWithoutExtension(path)}{ConvertFormat}"));
+                JobManager.AddJob(job, LoggingManager);
+                job.Start();
+            }
+            updateTimer.Start();
         }
     }
 }

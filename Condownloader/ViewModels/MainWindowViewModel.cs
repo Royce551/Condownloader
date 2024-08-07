@@ -20,15 +20,17 @@ namespace Condownloader.ViewModels
         public MainWindowViewModel()
         {
             JobManager.JobError += JobError;
-            updateTimer.Interval = TimeSpan.FromMilliseconds(10);
+            updateTimer.Interval = TimeSpan.FromMilliseconds(100);
             updateTimer.Tick += UpdateTimer_Tick;
         }
 
-        private void UpdateTimer_Tick(object? sender, EventArgs e)
-        {
-            RunningJobs = new(JobManager.Jobs);
+        private void UpdateTimer_Tick(object? sender, EventArgs e) => UpdateRunningJobsList();
 
-            if (JobManager.Jobs.All(x => x.Status.State == JobState.Finished)) updateTimer.Stop();
+        public void UpdateRunningJobsList()
+        {
+            if (JobManager.Jobs.Count <= 0 || JobManager.Jobs.All(x => x.Status.State == JobState.Finished)) updateTimer.Stop();
+
+            RunningJobs = new(JobManager.Jobs);
         }
 
         private void JobError(object sender, EventArgs args)
@@ -106,6 +108,17 @@ namespace Condownloader.ViewModels
                 job.Start();
             }
             updateTimer.Start();
+        }
+
+        public void StopAllJobs()
+        {
+            foreach (var job in JobManager.Jobs)
+            {
+                job.Stop();
+            }
+            JobManager.Jobs.Clear();
+
+            UpdateRunningJobsList();
         }
     }
 }

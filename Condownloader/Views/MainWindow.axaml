@@ -84,7 +84,7 @@
 
       <DockPanel Grid.ColumnSpan="2" Grid.Row="1" Margin="10">
         <TextBlock DockPanel.Dock="Top" Text="Jobs" FontSize="24" FontWeight="Bold"/>
-        <Button DockPanel.Dock="Bottom" Margin="0,10,0,0" HorizontalAlignment="Right" Content="Stop all jobs"/>
+        <Button DockPanel.Dock="Bottom" Margin="0,10,0,0" HorizontalAlignment="Right" Content="Stop all jobs" Command="{Binding StopAllJobs}"/>
         <ListBox MinHeight="100" ItemsSource="{Binding RunningJobs}">
           <ListBox.ItemTemplate>
             <DataTemplate>

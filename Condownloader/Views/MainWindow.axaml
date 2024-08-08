@@ -20,7 +20,7 @@
     <NativeMenu>
       <NativeMenuItem Header="_File">
         <NativeMenu>
-          <NativeMenuItem Header="_Exit Condownloader"/>
+          <NativeMenuItem Header="_Exit Condownloader" Click="NativeMenuItem_Click_2"/>
         </NativeMenu>
       </NativeMenuItem>
       <NativeMenuItem Header="_Help">
@@ -42,7 +42,7 @@
         <TextBlock Text="You can also download multiple; separate the URLs with semicolons" TextWrapping="Wrap" FontSize="10"/>
 
         <TextBox Watermark="File name" Text="{Binding DownloadFileName}"/>
-        <TextBlock Text="Output templates are also available. Click here for more details" TextWrapping="Wrap" FontSize="10"/>
+        <TextBlock Text="Output templates are also available. Click here for more details" TextWrapping="Wrap" FontSize="10" PointerReleased="TextBlock_PointerReleased"/>
 
         <CheckBox Margin="0,10,0,0" Content="Download audio only" IsChecked="{Binding DownloadAudioOnly}"/>
         <TextBlock Text="Format" IsVisible="{Binding !DownloadAudioOnly}"/>

@@ -2,7 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" Width="500" Height="475" CanResize="False"
+        mc:Ignorable="d" Width="500" Height="475" CanResize="False" WindowStartupLocation="CenterOwner"
         x:Class="Condownloader.AboutWindow" Icon="/Assets/condownloader.ico" RequestedThemeVariant="Dark"
         Title="About Condownloader">
   <Window.Background>
@@ -21,10 +21,10 @@
     
     <TextBlock Margin="0,20,0,0" Text="Thank you for using Condownloader ❤️" FontWeight="Bold"/>
     
-    <Button Margin="0,20,0,0" Content="Releases page (get updated versions)"/>
-    <Button Content="Report an issue"/>
-    <Button Content="View license and source code"/>
-    <Button Content="Condownloader website"/>
+    <Button Margin="0,20,0,0" Content="Releases page (get updated versions)" Click="Button_Click"/>
+    <Button Content="Report an issue" Click="Button_Click_1"/>
+    <Button Content="View license and source code" Click="Button_Click_2"/>
+    <!--<Button Content="Condownloader website"/>-->
   </StackPanel>
    
 </Window>

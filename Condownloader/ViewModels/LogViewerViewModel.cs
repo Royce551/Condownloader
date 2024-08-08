@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Condownloader.Jobs;
+using MsBox.Avalonia;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,7 +33,8 @@ namespace Condownloader.ViewModels
 
         public void SaveToFileCommand()
         {
-
+            var box = MessageBoxManager.GetMessageBoxStandard("Title", "Text", MsBox.Avalonia.Enums.ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Warning, Avalonia.Controls.WindowStartupLocation.CenterScreen);
+            var result = box.ShowAsync();
         }
     }
 }

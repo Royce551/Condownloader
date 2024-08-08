@@ -58,7 +58,10 @@ namespace Condownloader.Jobs
         private void Ffmpeg_Error(object sender, FFmpeg.NET.Events.ConversionErrorEventArgs e)
         {
             JobStateChanged?.Invoke(null, EventArgs.Empty);
-            JobError?.Invoke(null, new JobErrorEventArgs { Error = e.Exception.Message });
+            JobError?.Invoke(null, new JobErrorEventArgs 
+            { 
+                Error = $"An error occured converting converting a video:\n\n{e.Exception.Message}" 
+            });
         }
 
         public void Stop() => cancellationTokenSource.Cancel();

@@ -6,7 +6,7 @@
         mc:Ignorable="d" 
         Width="650" Height="550"
         x:Class="Condownloader.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
+        x:DataType="vm:MainWindowViewModel" Loaded="Window_Loaded"
         Icon="/Assets/condownloader.ico" Background="{DynamicResource BackgroundColor}"
         Title="Condownloader">
 

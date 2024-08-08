@@ -46,7 +46,10 @@ namespace Condownloader.Jobs
 
                 Status.State = JobState.Failed;
                 JobStateChanged?.Invoke(null, EventArgs.Empty);
-                JobError?.Invoke(null, new JobErrorEventArgs { Error = errorOutput });
+                JobError?.Invoke(null, new JobErrorEventArgs 
+                { 
+                    Error = $"An error occurred downloading a video:\n\n{errorOutput}\n\n(If this keeps happening, you may have to update Condownloader)" 
+                });
             };
             youtube.StandardOutputEvent += (object sender, string output) =>
             {

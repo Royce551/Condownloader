@@ -1,8 +1,11 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Threading;
 using Condownloader.ViewModels;
+using MsBox.Avalonia;
 using SIADL.Avalonia;
+using System;
 
 namespace Condownloader.Views
 {
@@ -34,6 +37,20 @@ namespace Condownloader.Views
         {
             if (Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktopLifetime)
                 desktopLifetime.Shutdown();
+        }
+
+        private void Window_Loaded(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            viewModel.JobManager.JobError += JobError;
+        }
+
+        private void JobError(object sender, JobErrorEventArgs args)
+        {
+            Dispatcher.UIThread.Invoke(() =>
+            {
+                var box = MessageBoxManager.GetMessageBoxStandard("Condownloader", args.Error, MsBox.Avalonia.Enums.ButtonEnum.Ok, MsBox.Avalonia.Enums.Icon.Error, WindowStartupLocation.CenterOwner);
+                _ = box.ShowWindowDialogAsync(this);
+            });
         }
     }
 }

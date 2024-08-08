@@ -19,7 +19,6 @@ namespace Condownloader.ViewModels
 
         public MainWindowViewModel()
         {
-            JobManager.JobError += JobError;
             updateTimer.Interval = TimeSpan.FromMilliseconds(100);
             updateTimer.Tick += UpdateTimer_Tick;
         }
@@ -31,11 +30,6 @@ namespace Condownloader.ViewModels
             if (JobManager.Jobs.Count <= 0 || JobManager.Jobs.All(x => x.Status.State == JobState.Finished)) updateTimer.Stop();
 
             RunningJobs = new(JobManager.Jobs);
-        }
-
-        private void JobError(object sender, EventArgs args)
-        {
-
         }
 
         [ObservableProperty]

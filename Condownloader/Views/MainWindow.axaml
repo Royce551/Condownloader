@@ -25,7 +25,7 @@
       </NativeMenuItem>
       <NativeMenuItem Header="_Help">
         <NativeMenu>
-          <NativeMenuItem Header="_View logs"/>
+          <NativeMenuItem Header="_View logs" Click="NativeMenuItem_Click_1"/>
           <NativeMenuItem Header="_About Condownloader" Click="NativeMenuItem_Click"/>
         </NativeMenu>
       </NativeMenuItem>

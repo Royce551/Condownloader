@@ -1,0 +1,19 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:Condownloader.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Condownloader.LogViewerWindow" Icon="/Assets/condownloader.ico"
+        x:DataType="vm:LogViewerViewModel"
+        Title="Log Viewer">
+  <DockPanel>
+    <DockPanel DockPanel.Dock="Bottom" Margin="10">
+      <Button DockPanel.Dock="Right" HorizontalAlignment="Right" Content="Clear all" Command="{Binding ClearAllCommand}"/>
+      <Button DockPanel.Dock="Right" Margin="0,0,10,0" HorizontalAlignment="Right" Content="Save to file..." Command="{Binding SaveToFileCommand}"/>
+    </DockPanel>
+    <ListBox ItemsSource="{Binding LogLines}">
+      
+    </ListBox>
+  </DockPanel>
+</Window>

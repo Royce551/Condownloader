@@ -42,6 +42,8 @@ namespace Condownloader.Jobs
         {
             youtube.StandardErrorEvent += (object sender, string errorOutput) =>
             {
+                Logs.WriteLog(errorOutput);
+
                 Status.State = JobState.Failed;
                 JobStateChanged?.Invoke(null, EventArgs.Empty);
                 JobError?.Invoke(null, new JobErrorEventArgs { Error = errorOutput });

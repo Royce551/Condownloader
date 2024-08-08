@@ -8,5 +8,10 @@ namespace Condownloader.Views
         {
             InitializeComponent();
         }
+
+        private void NativeMenuItem_Click(object? sender, System.EventArgs e)
+        {
+            new AboutWindow().Show();
+        }
     }
 }

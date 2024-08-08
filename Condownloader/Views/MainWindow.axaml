@@ -7,7 +7,7 @@
         Width="650" Height="550"
         x:Class="Condownloader.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico" Background="{DynamicResource BackgroundColor}"
+        Icon="/Assets/condownloader.ico" Background="{DynamicResource BackgroundColor}"
         Title="Condownloader">
 
     <Design.DataContext>
@@ -26,7 +26,7 @@
       <NativeMenuItem Header="_Help">
         <NativeMenu>
           <NativeMenuItem Header="_View logs"/>
-          <NativeMenuItem Header="_About Condownloader"/>
+          <NativeMenuItem Header="_About Condownloader" Click="NativeMenuItem_Click"/>
         </NativeMenu>
       </NativeMenuItem>
     </NativeMenu>
